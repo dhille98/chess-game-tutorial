@@ -39,7 +39,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
       - name: docker image build
         run: |
-          docker image build -t spc:${{ github.run_number }} .
+          docker image build -t chess-game:${{ github.run_number }} .
           docker images ls
 
       - name: List Docker Images
