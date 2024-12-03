@@ -44,6 +44,13 @@ jobs:
 
       - name: List Docker Images
         run: docker images
+      - name: Cache Trivy Database
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/trivy
+          key: trivy-db-${{ runner.os }}-${{ hashFiles('**/Dockerfile') }}
+          restore-keys: |
+            trivy-db-${{ runner.os }}-
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.28.0
         with:
